@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="gametimer" />
+    <meta name="twitter:description" content="ソシャゲなどによくある、スタミナ的なもののタイマー" />
+    <title>gametimer</title>
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="./gametimer.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>スタミナタイマー</h1>
+        <div id="countdownArea">
+            <span id="countdownTime">00:00:00</span>
+        </div>
+        <div id="prog">
+            <div id="prog_back">
+                <div id="prog_front"></div>
+                <div id="prog_st">
+                    <div id="prog_curSt"></div>
+                    <div>/</div>
+                    <div id="prog_maxSt"></div>
+                </div>
+            </div>
+        </div>
+        <div class="input_area">
+            <p><label>1回復<input id="intTime" type="number" value="300" min="0">秒</label></p>
+            <p><label>現在値<input id="curSt" type="number" value="0" min="0"></label></p>
+            <p><label>最大値<input id="maxSt" type="number" value="100" min="0"></label>
+                <label><input id="notifyChk" type="checkbox">通知</label>
+            </p>
+        </div>
+        <p>※通知機能は一部のデスクトップブラウザにのみ対応</p>
+        <input id="start_bt" type="button" value="開始" onclick=startTimer() />
+    </div>
+    <footer>
+        <p><a href="https://twitter.com/Mq_41y/">@Mq_41y</a>
+        <a href="https://github.com/Marshey/gametimer/">Repository</a></p>
+    </footer>
+</body>
+
+</html>
