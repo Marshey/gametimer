@@ -17,37 +17,42 @@ window.addEventListener('DOMContentLoaded', () => {
             isNotify = false;
         }
     });
-    document.getElementById('start_bt').onclick = function startTimer() {
-        if (intervIdArr.length > 0) {
-            clearInterval(intervIdArr.shift());
-        }
-
-        getStamina();
-        document.getElementById('curSt').max = stamina.maxStamina;
-        displayProgress(stamina.currentStamina, stamina.maxStamina);
-        if (stamina.currentStamina <= stamina.maxStamina) {
-            initialTime = new Date().getTime();
-            targetTime = initialTime + ((stamina.maxStamina - stamina.currentStamina) * stamina.intervTime * 1000);
-            lastElapsed = initialTime;
-            flow = 0;
-            updateElement();
-            intervIdArr.push(setInterval(timer, 1000));
-        }
-    }
 });
 
-function updateTimer() {
-    getStamina();
-    let addStamina = parseInt(document.getElementById('addSt1').value);
-    targetTime = initialTime + ((stamina.maxStamina - stamina.currentStamina) * stamina.intervTime * 1000);
-
-    if (stamina.currentStamina + addStamina >= 0) {
-        stamina.currentStamina += addStamina;
-        targetTime -= addStamina * stamina.intervTime * 1000;
+function startTimer() {
+    if (intervIdArr.length > 0) {
+        clearInterval(intervIdArr.shift());
     }
-    if (stamina.currentStamina + addStamina >= stamina.maxStamina) {
-        stamina.currentStamina = stamina.maxStamina;
-        targetTime = new Date().getTime();
+
+    getStamina();
+    document.getElementById('curSt').max = stamina.maxStamina;
+    displayProgress(stamina.currentStamina, stamina.maxStamina);
+    if (stamina.currentStamina <= stamina.maxStamina) {
+        initialTime = new Date().getTime();
+        targetTime = initialTime + ((stamina.maxStamina - stamina.currentStamina) * stamina.intervTime * 1000);
+        lastElapsed = initialTime;
+        flow = 0;
+        updateElement();
+        intervIdArr.push(setInterval(timer, 1000));
+    }
+}
+
+function updateTimer() {
+    let addStamina = parseInt(document.getElementById('addSt1').value);
+
+    if (addStamina == 0) {
+        getStamina();
+        lastElapsed = new Date().getTime();
+        targetTime = lastElapsed + ((stamina.maxStamina - stamina.currentStamina) * stamina.intervTime * 1000);
+    } else {
+        if (stamina.currentStamina + addStamina >= 0) {
+            stamina.currentStamina += addStamina;
+            targetTime -= addStamina * stamina.intervTime * 1000;
+        }
+        if (stamina.currentStamina + addStamina >= stamina.maxStamina) {
+            stamina.currentStamina = stamina.maxStamina;
+            targetTime = new Date().getTime();
+        }
     }
     displayProgress(stamina.currentStamina, stamina.maxStamina);
 }
@@ -124,13 +129,12 @@ function updateElement() {
             document.getElementById('lavelAddSt1').remove();
             document.getElementById('update_bt').remove();
         }
-
         const startBtElement = document.createElement('input');
         startBtElement.setAttribute('id', 'start_bt');
         startBtElement.setAttribute('type', 'button');
         startBtElement.setAttribute('value', '開始');
+        startBtElement.setAttribute('onclick', 'startTimer()');
         btAreaElement.appendChild(startBtElement);
-
     } else {
         document.getElementById('start_bt').remove();
         const lavelElement = document.createElement('lavel');
