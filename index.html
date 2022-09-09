@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div id="container">
         <h1>スタミナタイマー</h1>
         <div id="countdownArea">
             <span id="countdownTime">00:00:00</span>
@@ -36,11 +36,8 @@
             </p>
         </div>
         <p>※通知機能は一部のデスクトップブラウザにのみ対応</p>
-        <input id="start_bt" type="button" value="開始" onclick=startTimer() />
-        <dev class="add_area">
-            <p><label>スタミナ加算<input id="addSt1" type="number" value="0" min="0"></label>
-            <input id="update_bt" type="button" value="更新" onclick=updateTimer() /></p>
-        </dev>
+        
+        <!-- ボタン挿入箇所 -->
     </div>
     <footer>
         <p><a href="https://twitter.com/Mq_41y/">@Mq_41y</a>
