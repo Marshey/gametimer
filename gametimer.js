@@ -118,7 +118,7 @@ function notify(stamina) {
 }
 
 function updateElement() {
-    const containerElement = document.getElementById('container');
+    const btAreaElement = document.getElementById('button_area');
     if (!(document.getElementById('start_bt'))) {
         if (document.getElementById('lavelAddSt1')) {
             document.getElementById('lavelAddSt1').remove();
@@ -129,25 +129,28 @@ function updateElement() {
         startBtElement.setAttribute('id', 'start_bt');
         startBtElement.setAttribute('type', 'button');
         startBtElement.setAttribute('value', '開始');
-        containerElement.appendChild(startBtElement);
+        btAreaElement.appendChild(startBtElement);
 
     } else {
         document.getElementById('start_bt').remove();
         const lavelElement = document.createElement('lavel');
         lavelElement.setAttribute('id', 'lavelAddSt1');
-        lavelElement.textContent = 'スタミナ加算';
+        const lavelMargin = document.createElement('span');
+        lavelMargin.setAttribute('class', 'boxlavel');
+        lavelMargin.textContent = 'スタミナ加算';
+        lavelElement.appendChild(lavelMargin);
         const updateInElement = document.createElement('input');
         updateInElement.setAttribute('id', 'addSt1',);
         updateInElement.setAttribute('type', 'number');
         updateInElement.setAttribute('value', '0');
         updateInElement.setAttribute('min', '0');
         lavelElement.appendChild(updateInElement);
-        containerElement.appendChild(lavelElement);
+        btAreaElement.appendChild(lavelElement);
         const updateBtElement = document.createElement('input');
         updateBtElement.setAttribute('id', 'update_bt');
         updateBtElement.setAttribute('type', 'button');
         updateBtElement.setAttribute('value', '更新');
         updateBtElement.setAttribute('onclick', 'updateTimer()');
-        containerElement.appendChild(updateBtElement);
+        btAreaElement.appendChild(updateBtElement);
     }
 }

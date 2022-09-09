@@ -107,14 +107,18 @@ input[type=checkbox] {
     height: 2em;
 }
 
-#start_bt {
+#button_area {
     margin-top: 1.5rem;
+}
+
+#start_bt {
     height: 3rem;
     width: 5rem;
 }
 
 #update_bt {
-    height: 2rem;
+    margin: 0 .5em;
+    height: 2.5rem;
     width: 4rem;
 }
 
