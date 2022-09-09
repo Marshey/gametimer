@@ -45,13 +45,12 @@ function updateTimer() {
         lastElapsed = new Date().getTime();
         targetTime = lastElapsed + ((stamina.maxStamina - stamina.currentStamina) * stamina.intervTime * 1000);
     } else {
-        if (stamina.currentStamina + addStamina >= 0) {
-            stamina.currentStamina += addStamina;
-            targetTime -= addStamina * stamina.intervTime * 1000;
-        }
         if (stamina.currentStamina + addStamina >= stamina.maxStamina) {
             stamina.currentStamina = stamina.maxStamina;
             targetTime = new Date().getTime();
+        } else if (stamina.currentStamina + addStamina < stamina.maxStamina && stamina.currentStamina + addStamina >= 0) {
+            stamina.currentStamina += addStamina;
+            targetTime -= addStamina * stamina.intervTime * 1000;
         }
     }
     displayProgress(stamina.currentStamina, stamina.maxStamina);
